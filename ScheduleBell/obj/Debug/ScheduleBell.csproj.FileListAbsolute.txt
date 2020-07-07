@@ -1,0 +1,14 @@
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\bin\Debug\ScheduleBell.exe.config
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\bin\Debug\ScheduleBell.exe
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\bin\Debug\ScheduleBell.pdb
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.csprojAssemblyReference.cache
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\MainWindow.g.cs
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\App.g.cs
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell_MarkupCompile.cache
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell_MarkupCompile.lref
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\MainWindow.baml
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.g.resources
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.Properties.Resources.resources
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.csproj.GenerateResource.cache
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.exe
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.pdb
