@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScheduleBell"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="150" Width="350" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="Manual" Loaded="Window_Loaded">
     <Grid>
-        
+        <TextBlock Name="sche" HorizontalAlignment="Left" Height="63" Margin="10,10,0,0" TextWrapping="Wrap" Text="현재 일정 : " VerticalAlignment="Top" Width="330"/>
+        <Rectangle Fill="#FF343434" HorizontalAlignment="Left" Height="4" Margin="10,102,0,0" VerticalAlignment="Top" Width="330"/>
+        <TextBlock Name="cloc" HorizontalAlignment="Left" Height="34" Margin="10,111,0,0" TextWrapping="Wrap" Text="0000-00-00 오전 00:00" VerticalAlignment="Top" Width="330" FontSize="24" TextAlignment="Center"/>
     </Grid>
 </Window>

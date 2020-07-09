@@ -24,5 +24,15 @@ namespace ScheduleBell
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var screen = System.Windows.SystemParameters.WorkArea;
+            this.Left = screen.Right - this.Width;
+            this.Top = 0;
+
+            DateTime time = DateTime.Now;
+            cloc.Text = time.ToString();
+        }
     }
 }
