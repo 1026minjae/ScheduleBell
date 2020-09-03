@@ -46,5 +46,50 @@ namespace ScheduleBell
         {
             Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate { cloc.Text = DateTime.Now.ToString(); }));
         }
+
+        private void Window_Drag(object sender, MouseEventArgs e)
+        {
+            this.DragMove();
+            sche.Text = "test";
+        }
+
+        private void MissionBar_Click(object sender, RoutedEventArgs e)
+        {
+            int done = Convert.ToInt32((sender as Button).Tag);
+            if (done == 0)
+            {
+                (sender as Button).Background = new SolidColorBrush(Color.FromRgb(0x55, 0xFF, 0x55));
+                (sender as Button).Tag = 1;
+            }
+            else
+            {
+                list.Children.Remove(sender as Button);
+            }
+        }
+
+        private void AddMissionBar()
+        {
+            string name = MissionName.Text;
+            MissionName.Text = "";
+
+            Button btn = new Button
+            {
+                Content = name,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                Height = 36,
+                Width = 220,
+                Background = new SolidColorBrush(Color.FromRgb(0xFF, 0x55, 0x55)),
+                FontSize = 14,
+                Tag = 0
+            };
+            btn.Click += MissionBar_Click;
+            list.Children.Add(btn);
+        }
+
+        private void AddMissionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddMissionBar();
+        }
     }
 }
