@@ -132,6 +132,20 @@ namespace ScheduleBell
         private void Window_Drag(object sender, MouseEventArgs e)
         {
             this.DragMove();
+
+            var screen = System.Windows.SystemParameters.WorkArea;
+            if (this.Left < 0)
+            {
+                this.Left = 0;
+            }
+            else if (this.Left > screen.Right - this.Width)
+            {
+                this.Left = screen.Right - this.Width;
+            }
+            if (this.Top > screen.Bottom - this.Height)
+            {
+                this.Top = screen.Bottom - this.Height;
+            }
         }
 
         private void MissionBar_Click(object sender, RoutedEventArgs e)
@@ -144,8 +158,14 @@ namespace ScheduleBell
             }
             else
             {
-                list.Children.Remove(sender as Button);
+                (sender as Button).Background = new SolidColorBrush(Color.FromRgb(0xFF, 0xAA, 0xAA));
+                (sender as Button).Tag = 0;
             }
+        }
+
+        private void MissionBar_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            list.Children.Remove(sender as Button);
         }
 
         private void AddMissionBar()
@@ -158,13 +178,14 @@ namespace ScheduleBell
                 Content = name,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Height = 36,
+                Height = 32,
                 Width = 220,
                 Background = new SolidColorBrush(Color.FromRgb(0xFF, 0xAA, 0xAA)),
                 FontSize = 14,
                 Tag = 0
             };
             btn.Click += MissionBar_Click;
+            btn.MouseDoubleClick += MissionBar_DoubleClick;
             list.Children.Add(btn);
         }
 
