@@ -4,6 +4,30 @@
              xmlns:local="clr-namespace:ScheduleBell"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ControlTemplate TargetType="Button" x:Key="res">
+            <Border>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Border.Background>
+                    <ImageBrush>
+                        <ImageBrush.ImageSource>
+                            <BitmapImage UriSource="schedulebell.png"/>
+                        </ImageBrush.ImageSource>
+                    </ImageBrush>
+                </Border.Background>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="Button" x:Key="RES">
+            <Setter Property="Template" Value="{StaticResource res}"></Setter>
+        </Style>
+        <ControlTemplate TargetType="Button" x:Key="min">
+            <Border CornerRadius="10" Background="#FFEBDB97">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="Button" x:Key="MIN">
+            <Setter Property="Template" Value="{StaticResource min}"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

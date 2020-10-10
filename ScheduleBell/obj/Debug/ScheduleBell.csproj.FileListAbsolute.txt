@@ -12,3 +12,4 @@ C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.Pr
 C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.csproj.GenerateResource.cache
 C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.exe
 C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\ScheduleBell.pdb
+C:\Users\MJ.KIM\Source\Repos\ScheduleBell\ScheduleBell\obj\Debug\App.baml

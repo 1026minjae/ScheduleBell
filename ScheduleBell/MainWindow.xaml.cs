@@ -60,11 +60,20 @@ namespace ScheduleBell
             }
             return true;
         }
+
+        public bool IsEndTime(int currhour, int currmin)
+        {
+            if (currhour == endhour && currmin == endmin)
+                return true;
+            return false;
+        }
     }
 
     public partial class MainWindow : Window
     {
         private List<Schedule> schedules = new List<Schedule>();
+        private bool exist_sche = false;
+        private int curr_sche_index = 0;
 
         private void ReadScheDB()
         {
@@ -74,9 +83,12 @@ namespace ScheduleBell
             //schedules 할당. 담는다.
             //하루마다 갱신한다.
 
+            //DB에서부터 정렬된 데이터를 가지고 있다고 가정한다.
+            //그냥 데이터를 추가하면 정렬 과정까지 한다고 치자.
+
             //sample
-            schedules.Add(new Schedule(false, 15, 0, 16, 0, "일정 테스트 용도입니다."));
-            schedules.Add(new Schedule(true, 14, 30, 15, 30, "날짜 지정 테스트 용도입니다."));
+            //schedules.Add(new Schedule(false, 15, 0, 16, 0, "일정 테스트 용도입니다."));
+            //schedules.Add(new Schedule(true, 14, 30, 15, 30, "날짜 지정 테스트 용도입니다."));
         }
 
         public MainWindow()
@@ -95,16 +107,29 @@ namespace ScheduleBell
         private void SetSche(object sender, ElapsedEventArgs e)
         {
             Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate {
-                bool isDate = false;
-                foreach(Schedule sc in schedules)
+                //bool isDate = false; //날짜를 지정한 일정이 우선순위가 높으므로 이를 구분하기 위해 필요
+                int currhour = DateTime.Now.Hour;
+                int currmin = DateTime.Now.Minute;
+                
+                if(!exist_sche)
                 {
-                    if(sc.IsTime(DateTime.Now.Hour, DateTime.Now.Minute))
+                    if (schedules[curr_sche_index].IsTime(currhour, currmin))
                     {
-                        if(!isDate)
-                        {
-                            sche.Text = sc.sche;
-                            isDate = sc.isDate;
-                        }
+                        sche.Text = schedules[curr_sche_index].sche;
+                        exist_sche = true;
+                    }
+                }
+                else if (schedules[curr_sche_index].IsEndTime(currhour, currmin))
+                {
+                    curr_sche_index++;
+                    if (schedules[curr_sche_index].IsTime(currhour, currmin))
+                    {
+                        sche.Text = schedules[curr_sche_index].sche;
+                    }
+                    else
+                    {
+                        sche.Text = "일정이 없습니다.";
+                        exist_sche = false;
                     }
                 }
             }));
@@ -122,11 +147,14 @@ namespace ScheduleBell
             timer.Start();
             SetClock(sender, new EventArgs() as ElapsedEventArgs);
 
-            System.Timers.Timer timer2 = new Timer(TimeSpan.FromMinutes(1).TotalMilliseconds);
-            timer2.AutoReset = true;
-            timer2.Elapsed += new System.Timers.ElapsedEventHandler(SetSche);
-            timer2.Start();
-            SetSche(sender, new EventArgs() as ElapsedEventArgs);
+            if(schedules.Count > 0)
+            {
+                System.Timers.Timer timer2 = new Timer(TimeSpan.FromMinutes(1).TotalMilliseconds);
+                timer2.AutoReset = true;
+                timer2.Elapsed += new System.Timers.ElapsedEventHandler(SetSche);
+                timer2.Start();
+                SetSche(sender, new EventArgs() as ElapsedEventArgs);
+            }
         }
 
         private void Window_Drag(object sender, MouseEventArgs e)
@@ -202,5 +230,22 @@ namespace ScheduleBell
             AddMissionBar();
         }
 
+        private void reshow_Click(object sender, RoutedEventArgs e)
+        {
+            working.Visibility = Visibility.Visible;
+            reshow.Visibility = Visibility.Hidden;
+
+            var screen = System.Windows.SystemParameters.WorkArea;
+            this.Left = screen.Right - this.Width;
+        }
+
+        private void min_Click(object sender, RoutedEventArgs e)
+        {
+            working.Visibility = Visibility.Hidden;
+            reshow.Visibility = Visibility.Visible;
+
+            var screen = System.Windows.SystemParameters.WorkArea;
+            this.Left = screen.Width - 70;
+        }
     }
 }
